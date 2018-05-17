@@ -6,14 +6,14 @@
 # @FileName:  headers.py
 # @Project: SubWorkSpace
 # @Last Modified by:   Zeng Ball
-# @Last Modified time: 2018-05-16 18:40:29
+# @Last Modified time: 2018-05-17 12:14:40
 """
 import json
 
-class SitHeaders():
+class Headers():
 	"""存放接口请求头部信息"""
 	def __init__(self):
-		login_headers = {"Host": "salon-sit.lite.meimeifa.cn",
+		sit_login_headers = {"Host": "salon-sit.lite.meimeifa.cn",
 		"Connection": "keep-alive",
 		"Content-Length": "",
 		"Pragma": "no-cache",
@@ -29,7 +29,7 @@ class SitHeaders():
 		"Accept-Encoding": "gzip, deflate",
 		"Accept-Language": "zh-CN,zh;q=0.9,zh-TW;q=0.8,zh-HK;q=0.7"
 		}
-		headers = {"Host": "salon-sit.lite.meimeifa.cn",
+		sit_headers = {"Host": "salon-sit.lite.meimeifa.cn",
 		"Connection": "keep-alive",
 		"Pragma": "no-cache",
 		"Cache-Control": "no-cache",
@@ -43,17 +43,15 @@ class SitHeaders():
 		"Accept-Encoding": "gzip, deflate",
 		"Accept-Language": "zh-CN,zh;q=0.9,zh-TW;q=0.8,zh-HK;q=0.7"
 		}
+		self.login_headers = {"sit": sit_login_headers, "uat": {}}
+		self.headers = {"sit": sit_headers, "uat": {}}
 
-	def get_login_headers(self):
-		return json.dumps(self.login_headers)
+	def get_login_headers(self, env="sit"):
+		return self.login_headers.get(env)
 
-	def get_headers(self):
-		return json.dumps(self.headers)
-
-class UatHeaders():
-	"""存放接口请求头部信息"""
-	pass
+	def get_headers(self, env="sit"):
+		return self.headers.get(env)
 
 
 if __name__ == '__main__':
-	print(HEADERS.get("sit"))
+	print(Headers().get_login_headers("uat"))

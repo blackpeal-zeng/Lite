@@ -6,13 +6,13 @@
 # @FileName:  get_token.py
 # @Project: SubWorkSpace
 # @Last Modified by:   Zeng Ball
-# @Last Modified time: 2018-05-16 18:37:06
+# @Last Modified time: 2018-05-17 12:17:14
 """
 import requests
 from config.environment import ENVIRONMENT
 from config.users import Users
 from config.domain import Domain
-from config.headers import *
+from config.headers import Headers
 
 
 
@@ -23,14 +23,13 @@ class Token():
 		self.env = ENVIRONMENT
 		self.user = Users().get_user(self.env)
 		self.domain = Domain().get_domain(self.env)
-		self.url = self.domain+"/common/login"
-		self.headers = HEADERS.get(self.env)().get_login_headers()
+		self.headers = Headers().get_login_headers(self.env)
+		self.url = Domain().get_domain(self.env)+"/common/login"
 
 	def get_token(self):
 		"""请求登录接口，获取token"""
-		response = requests.post(self.url, self.user, headers=self.headers).json()
-		print(response)
-		# return response.get("token")
+		response = requests.post(url=self.url, data=self.user, headers=self.headers).json()
+		return response.get("response").get("token")[6:]
 
 
 

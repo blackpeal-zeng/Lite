@@ -6,12 +6,13 @@
 # @FileName:  调试.py
 # @Project: SubWorkSpace
 # @Last Modified by:   Zeng Ball
-# @Last Modified time: 2018-05-16 18:30:33
+# @Last Modified time: 2018-05-17 16:37:45
 """
 
 from get_data.get_token import Token
 
-Token().get_token()
+token = Token().get_token()
+print(token)
 
-from config.environment import ENVIRONMENT
-print(ENVIRONMENT)
+from base.get_datetime import Date
+print(Date().get_today())
