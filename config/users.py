@@ -6,13 +6,13 @@
 # @FileName:  users.py
 # @Project: SubWorkSpace
 # @Last Modified by:   Zeng Ball
-# @Last Modified time: 2018-06-26 15:50:53
+# @Last Modified time: 2018-06-27 17:02:42
 """
 
 class Users():
 	"""存放Lite测试账号"""
 	def __init__(self):
-		self.user = {"sit": {"account": "zengsx1", "password": "123456"},
+		self.user = {"sit": {"account": "zengtest", "password": "123456"},
 					"uat": {"account": "zengqiu", "password": "123456"}}
 
 	def get_user(self, env="sit"):

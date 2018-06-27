@@ -6,7 +6,7 @@
 # @FileName:  get_business_data.py
 # @Project: SubWorkSpace
 # @Last Modified by:   Zeng Ball
-# @Last Modified time: 2018-06-26 17:21:41
+# @Last Modified time: 2018-06-27 17:03:26
 """
 import requests
 from config.environment import ENVIRONMENT
@@ -26,7 +26,7 @@ class BusinessData():
 		self.headers = Headers().get_headers(env=self.env)
 		self.url = Domain().get_domain(env=self.env)+self.api
 
-	def get_business_data(self, Ndays=30, ispast=True):
+	def get_business_data(self, Ndays=0, ispast=True):
 		"""获取门店营业数据"""
 		today = DateTime().get_today()
 		if ispast:
